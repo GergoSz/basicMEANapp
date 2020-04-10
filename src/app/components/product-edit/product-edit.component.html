@@ -1,0 +1,37 @@
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()" class="form container">
+  <mat-form-field class="form-element">
+    <mat-label>Product name</mat-label>
+  <input matInput type="text" [errorStateMatcher]="matcher" formControlName="name">
+  <mat-error *ngIf="myForm.name.errors?.pattern">
+    Name must start with uppercase!
+  </mat-error>
+  <mat-error *ngIf="myForm.name.errors?.required">
+    Name is <strong>required</strong>
+  </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="form-element">
+    <mat-label>Amount to make</mat-label>
+    <input matInput type="text" [errorStateMatcher]="matcher" formControlName="amount">
+    <mat-error *ngIf="myForm.amount.errors?.pattern">
+      Amount must be a number!
+    </mat-error>
+    <mat-error *ngIf="myForm.amount.errors?.required">
+      Amount is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field class="form-element">
+    <mat-label>Cost to create one</mat-label>
+    <input matInput type="text" [errorStateMatcher]="matcher" formControlName="cost">
+    <mat-error *ngIf="myForm.cost.errors?.pattern">
+      Cost must be a number!
+    </mat-error>
+    <mat-error *ngIf="myForm.cost.errors?.required">
+      Cost is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <div class="form-element">
+    <button mat-raised-button color="primary" type="submit" class="button" [disabled]="!updateForm.valid">Update Product</button>
+  </div>
+</form>

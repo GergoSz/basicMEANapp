@@ -1,0 +1,12 @@
+.form {
+  min-width: 70px;
+  max-width: 500px;
+}
+
+.form-element{
+  width: 100%;
+}
+
+.mr {
+  margin-right: 8px;
+}

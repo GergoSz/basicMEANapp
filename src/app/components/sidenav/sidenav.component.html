@@ -1,0 +1,33 @@
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <mat-toolbar-row class="nav-bar">
+
+      <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <h1 class="example-app-name">Not so responsive App</h1>
+
+      <span class="example-spacer"></span>
+
+      <a mat-raised-button routerLinkActive="active" routerLink="/product-list">List Products</a>
+      <a mat-raised-button routerLinkActive="active" routerLink="/product-create">Create Product</a>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+
+    <mat-sidenav #snav [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list>
+        <p>Account name</p>
+        <p>id</p>
+        <p>details</p>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>
