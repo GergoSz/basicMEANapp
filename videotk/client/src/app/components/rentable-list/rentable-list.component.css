@@ -1,0 +1,35 @@
+.button-container{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 999 !important;
+}
+
+.rentable-card {
+    min-width: 280px;
+    margin: 15px;
+}
+
+.rentable-header-image {
+     /*https://img.icons8.com/officel/24/000000/cd.png*/
+    background-size: cover;
+    
+    border-radius: 0;
+}
+
+.DVD{
+    background-image: url('https://img.icons8.com/officel/96/000000/cd.png');
+}
+
+.CASSETTE{
+    background-image: url('https://img.icons8.com/officel/96/000000/tape-drive.png');
+}
+
+#picker{
+    pointer-events:none;
+    max-width: 300px;
+}
+
+.card-container{
+    padding: 25px;
+}

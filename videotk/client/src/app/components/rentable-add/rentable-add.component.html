@@ -1,0 +1,68 @@
+<h2 mat-dialog-title>Create Rentable</h2>
+
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="createForm" class="form container">
+        <mat-form-field class="form-element">
+            <mat-label>Title</mat-label>
+        <input matInput type="text" placeholder="Ex. Star Wars VI." [errorStateMatcher]="matcher" formControlName="title">
+        <mat-error *ngIf="myForm.title.errors?.required">
+            Title is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="myForm.title.errors?.pattern">
+            Title must start with an <strong>uppercase</strong> letter
+        </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="form-element">
+            <mat-label>Date of acquisition</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateofAcquisition">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="myForm.dateofAcquisition.errors?.required">
+                Date is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="form-element">
+            <mat-label>Serial number</mat-label>
+            <input matInput type="text" placeholder="Ex. 5247251" [errorStateMatcher]="matcher" formControlName="serNum">
+            <mat-error *ngIf="myForm.serNum.errors?.pattern">
+                Serial number must be a number!
+            </mat-error>
+            <mat-error *ngIf="myForm.serNum.errors?.required">
+                Serial number is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="form-element">
+            <mat-label>State of rentable</mat-label>
+            <mat-select formControlName="state" [errorStateMatcher]="matcher">
+                <mat-option *ngFor="let stateoption of states" [value]="stateoption.value">
+                    {{stateoption.viewValue}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="myForm.state.errors?.required">
+                State is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="form-element">
+            <mat-label>Type of rentable</mat-label>
+            <mat-select formControlName="type" [errorStateMatcher]="matcher">
+                <mat-option *ngFor="let typeoption of types" [value]="typeoption.value">
+                    {{typeoption.viewValue}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="myForm.type.errors?.required">
+                Type is <strong>required</strong>
+            </mat-error>
+        </mat-form-field>
+    
+        
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" (click)="submitForm()" [disabled]="!createForm.valid" >Comfirm</button>
+</mat-dialog-actions>

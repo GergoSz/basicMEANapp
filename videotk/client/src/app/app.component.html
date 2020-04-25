@@ -1,0 +1,24 @@
+<div class="example-container">
+    <mat-toolbar color="primary" class="example-toolbar">
+        <mat-toolbar-row class="nav-bar">
+        
+        <h1 class="example-app-name">Videó Kölcsönző</h1>
+        
+        <span class="example-spacer"></span>
+
+        <a mat-button routerLinkActive="active" routerLink="/client-list"> <mat-icon >people</mat-icon> <span class="icon">Clients</span> </a>
+        <a mat-button routerLinkActive="active" routerLink="/rentable-list"> <mat-icon >local_movies</mat-icon> <span>DVDs/Cassetts</span></a>
+        <a mat-button routerLinkActive="active" routerLink="/rent-list"> <mat-icon >event_note</mat-icon> <span>Rents</span></a>     
+
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-sidenav-container class="container">
+
+        <!--TODO: sidenav-->
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    
+    </mat-sidenav-container>
+
+</div>

@@ -1,0 +1,27 @@
+<p *ngIf="Rentables.length <= 0" class="no-data text-center">There is no rentables added yet!</p>
+<div class="button-container">
+    <button mat-fab color="primary" (click)="createRentable()">
+        <mat-icon>add</mat-icon>
+    </button>
+</div>
+<div class="card-container">
+    <div fxLayout="row wrap" fxLayoutAlign="space-evenly center">
+        <mat-card class="rentable-card"  *ngFor="let rentable of Rentables; let i = index">
+            <mat-card-header>
+                <div *ngIf="rentable.type!='OTHER'" mat-card-avatar class="rentable-header-image {{rentable.type}}"></div>
+                <mat-card-title>{{rentable.title}}</mat-card-title>
+                <mat-card-subtitle>{{rentable.serNum}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Acuired at: {{rentable.dateofAcquisition | date: 'yyyy. MM. dd.'}}</p>
+                <p>{{rentable.state.charAt(0) + rentable.state.substring(1).toLowerCase()}}</p>
+                <p>Type: [ {{rentable.type}} ] </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button (click)="editRentable(rentable, i)">Edit</button>
+                <button mat-button color="accent" (click)="removeRentable(rentable, i)">Delete</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
+
