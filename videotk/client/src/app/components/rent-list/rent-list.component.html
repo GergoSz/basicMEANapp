@@ -1,0 +1,13 @@
+<p *ngIf="Rents.length <= 0" class="no-data text-center">
+	There are no rents added yet!
+</p>
+
+<div *ngFor="let rent of Rents">
+	<p>{{ rent._id }}</p>
+</div>
+
+<div class="button-container">
+	<button mat-fab color="primary" (click)="createRent()">
+		<mat-icon>add</mat-icon>
+	</button>
+</div>

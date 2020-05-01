@@ -1,0 +1,80 @@
+<h2 mat-dialog-title>Add Rent</h2>
+
+<mat-dialog-content class="mat-typography">
+	<form [formGroup]="createForm" class="form container">
+		<mat-form-field class="form-element">
+			<mat-label>Date of rent</mat-label>
+			<input
+				matInput
+				[matDatepicker]="picker"
+				formControlName="dateofRent"
+			/>
+			<mat-datepicker-toggle
+				matSuffix
+				[for]="picker"
+			></mat-datepicker-toggle>
+			<mat-datepicker #picker></mat-datepicker>
+			<mat-error *ngIf="myForm.dateofRent.errors?.required">
+				Date is <strong>required</strong>
+			</mat-error>
+		</mat-form-field>
+		<br />
+		<mat-form-field class="form-element">
+			<mat-label>Date of rent</mat-label>
+			<input
+				matInput
+				[matDatepicker]="picker2"
+				formControlName="expiry"
+			/>
+			<mat-datepicker-toggle
+				matSuffix
+				[for]="picker2"
+			></mat-datepicker-toggle>
+			<mat-datepicker #picker2></mat-datepicker>
+			<mat-error *ngIf="myForm.expiry.errors?.required">
+				Date is <strong>required</strong>
+			</mat-error>
+		</mat-form-field>
+
+		<br />
+		<table>
+			<tr *ngFor="let rentable of Rentables; let i = index">
+				<ng-container *ngIf="rentable.state == 'AVAILABLE'"
+					><td>{{ rentable.title }} {{ rentable.serNum }}</td>
+
+					<td>
+						<button mat-button (click)="addRentable(rentable, i)">
+							<mat-icon>add</mat-icon>
+						</button>
+					</td></ng-container
+				>
+			</tr>
+			<tr *ngFor="let rentable of addedRentables; let i = index">
+				<td>{{ rentable.title }} {{ rentable.serNum }}</td>
+
+				<td>
+					<button
+						mat-button
+						color="primary"
+						(click)="removeRentable(rentable, i)"
+					>
+						<mat-icon>remove</mat-icon>
+					</button>
+				</td>
+			</tr>
+		</table>
+		<br />
+	</form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+	<button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+	<button
+		mat-button
+		[mat-dialog-close]="true"
+		(click)="submitForm()"
+		[disabled]="!createForm.valid"
+	>
+		Confirm
+	</button>
+</mat-dialog-actions>

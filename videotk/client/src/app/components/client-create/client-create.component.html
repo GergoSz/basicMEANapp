@@ -1,0 +1,121 @@
+<h2 mat-dialog-title>Create Client</h2>
+
+<mat-dialog-content class="mat-typography">
+	<form [formGroup]="createForm" class="form container">
+		<mat-form-field class="form-element">
+			<mat-label>Name</mat-label>
+			<input
+				matInput
+				type="text"
+				placeholder="Ex. Kiss Tamás"
+				[errorStateMatcher]="matcher"
+				formControlName="name"
+			/>
+			<mat-error *ngIf="myForm.name.errors?.required">
+				Name is <strong>required</strong>
+			</mat-error>
+			<mat-error *ngIf="myForm.name.errors?.pattern">
+				Name must start with an <strong>uppercase</strong> letter
+			</mat-error>
+		</mat-form-field>
+		<br />
+		<mat-form-field class="form-element">
+			<mat-label>Phone number</mat-label>
+			<input
+				matInput
+				type="text"
+				placeholder="Ex. 5247251"
+				[errorStateMatcher]="matcher"
+				formControlName="phoneNumber"
+			/>
+			<mat-error *ngIf="myForm.phoneNumber.errors?.pattern">
+				Phone number must be a number!
+			</mat-error>
+			<mat-error *ngIf="myForm.phoneNumber.errors?.required">
+				Phone number is <strong>required</strong>
+			</mat-error>
+		</mat-form-field>
+		<br />
+		<mat-form-field class="form-element">
+			<mat-label>ID number</mat-label>
+			<input
+				matInput
+				type="text"
+				[errorStateMatcher]="matcher"
+				formControlName="IDnum"
+			/>
+			<mat-error *ngIf="myForm.IDnum.errors?.pattern">
+				ID number must be a number!
+			</mat-error>
+			<mat-error *ngIf="myForm.IDnum.errors?.required">
+				ID number is <strong>required</strong>
+			</mat-error>
+		</mat-form-field>
+		<div class="address" formGroupName="address">
+			<mat-form-field class="form-element">
+				<mat-label>City</mat-label>
+				<input
+					matInput
+					type="text"
+					placeholder="Ex. Miskolc"
+					[errorStateMatcher]="matcher"
+					formControlName="city"
+				/>
+				<mat-error *ngIf="myForm.address.get('city').errors?.pattern">
+					City must start with an <strong>uppercase</strong> letter
+				</mat-error>
+				<mat-error *ngIf="myForm.address.get('city').errors?.required">
+					City is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="form-element">
+				<mat-label>Street</mat-label>
+				<input
+					matInput
+					type="text"
+					placeholder="Ex. Eper"
+					[errorStateMatcher]="matcher"
+					formControlName="street"
+				/>
+				<mat-error *ngIf="myForm.address.get('street').errors?.pattern">
+					Street must start with an <strong>uppercase</strong> letter
+				</mat-error>
+				<mat-error
+					*ngIf="myForm.address.get('street').errors?.required"
+				>
+					Street is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="form-element">
+				<mat-label>House Number</mat-label>
+				<input
+					matInput
+					type="text"
+					placeholder="Ex. 12"
+					[errorStateMatcher]="matcher"
+					formControlName="house"
+				/>
+				<mat-error *ngIf="myForm.address.get('house').errors?.pattern">
+					House number must be a number!
+				</mat-error>
+				<mat-error *ngIf="myForm.address.get('house').errors?.required">
+					House number is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+		</div>
+
+		<br />
+	</form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+	<button mat-button mat-dialog-close cdkFocusInitial>Cancel</button>
+	<button
+		mat-button
+		[mat-dialog-close]="true"
+		(click)="submitForm()"
+		[disabled]="!createForm.valid"
+	>
+		Confirm
+	</button>
+</mat-dialog-actions>

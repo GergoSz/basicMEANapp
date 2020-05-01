@@ -11,7 +11,7 @@
 }
 
 .rentable-header-image {
-     /*https://img.icons8.com/officel/24/000000/cd.png*/
+    /*https://img.icons8.com/officel/24/000000/cd.png*/
     background-size: cover;
     
     border-radius: 0;
@@ -31,5 +31,5 @@
 }
 
 .card-container{
-    padding: 25px;
+    padding: 35px 10%;
 }

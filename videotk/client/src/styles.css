@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: 'lato',Roboto , "Helvetica Neue", sans-serif; }
@@ -9,4 +11,8 @@ body { margin: 0; font-family: 'lato',Roboto , "Helvetica Neue", sans-serif; }
 ::-webkit-scrollbar-thumb{
     background: -webkit-gradient(linear, left top, left bottom, from(#da1b60), to(#bd1551));
     box-shadow: inset 2px 2px 2px rgba(255,255,255,0.2), inset -2px -2px -2px rgba(0,0,0,0.25);
+}
+.warn-snackbar{
+    background-color: #bd1551;
+    color: aliceblue;
 }

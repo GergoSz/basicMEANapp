@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-delete-rentable',
-  templateUrl: './delete-rentable.component.html',
-  styleUrls: ['./delete-rentable.component.css']
+	selector: "app-delete-rentable",
+	templateUrl: "./delete-rentable.component.html",
+	styleUrls: ["./delete-rentable.component.css"],
 })
 export class DeleteRentableComponent implements OnInit {
+	constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void { 
-  }
-
+	ngOnInit(): void {}
 }
+//FIXME: this should be a general Delete dialog (rename)

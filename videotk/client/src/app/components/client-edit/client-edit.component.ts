@@ -1,20 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-client-edit',
-  template: `
-    <p>
-      client-edit works!
-    </p>
-  `,
-  styles: [
-  ]
+	selector: "app-client-edit",
+	template: `
+		<p>
+			client-edit works!
+		</p>
+	`,
+	styles: [],
 })
 export class ClientEditComponent implements OnInit {
+	constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+	ngOnInit(): void {}
 }
+//TODO: This is a dialog! Put it in the dialog folder and refactor.
