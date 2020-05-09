@@ -103,7 +103,7 @@ export class ApiService {
 
 	// Update C
 	updateClient(id: any, data: any): Observable<any> {
-		const url = `${this.baseUri}/updateRA/${id}`;
+		const url = `${this.baseUri}/updateC/${id}`;
 		return this.http
 			.put(url, data, { headers: this.headers })
 			.pipe(catchError(this.errorMgmt));

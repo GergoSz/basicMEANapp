@@ -29,7 +29,7 @@ export class ClientCreateComponent implements OnInit {
 	mainForm() {
 		this.createForm = this.formBuilder.group({
 			name: ["", [Validators.required, Validators.pattern("^[A-Z].+$")]],
-			phoneNumber: [
+			phoneNum: [
 				"",
 				[Validators.required, Validators.pattern("^[0-9]+$")],
 			],

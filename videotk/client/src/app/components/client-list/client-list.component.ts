@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { ApiService } from "src/app/service/api.service";
 import { ClientCreateComponent } from "../client-create/client-create.component";
+import { ClientEditComponent } from "../client-edit/client-edit.component";
 
 @Component({
 	selector: "app-client-list",
@@ -10,15 +11,16 @@ import { ClientCreateComponent } from "../client-create/client-create.component"
 })
 export class ClientListComponent implements OnInit {
 	Clients: any = [];
-	constructor(private apiService: ApiService, public dialog: MatDialog) {
+	constructor(private apiService: ApiService, public dialog: MatDialog) {}
+
+	ngOnInit(): void {
 		this.readClients();
 	}
-
-	ngOnInit(): void {}
 
 	readClients() {
 		this.apiService.getClients().subscribe((data) => {
 			this.Clients = data;
+			console.log(this.Clients);
 		});
 	}
 
@@ -29,6 +31,29 @@ export class ClientListComponent implements OnInit {
 			if (result) {
 				this.readClients();
 				console.log(this.Clients);
+			}
+		});
+	}
+
+	toggleClient(client) {
+		client.isDeleted = !client.isDeleted;
+		this.apiService.updateClient(client._id, client).subscribe(
+			(res) => {
+				console.log(res + "Client deleted successfully!");
+			},
+			(error) => {
+				console.log(error);
+			}
+		);
+	}
+	editClient(client) {
+		const dialogRef = this.dialog.open(ClientEditComponent, {
+			data: { myobj: client, index: client._id },
+		});
+
+		dialogRef.afterClosed().subscribe((result) => {
+			if (result) {
+				this.readClients();
 			}
 		});
 	}

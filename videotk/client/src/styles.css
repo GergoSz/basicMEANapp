@@ -16,3 +16,7 @@ body { margin: 0; font-family: 'lato',Roboto , "Helvetica Neue", sans-serif; }
     background-color: #bd1551;
     color: aliceblue;
 }
+
+.fadedOut{
+    color: rgba(255,255,255,0.2);
+}

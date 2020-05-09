@@ -1,7 +1,7 @@
-<h2 mat-dialog-title>Create Client</h2>
+<h2 mat-dialog-title>Edit Client</h2>
 
 <mat-dialog-content class="mat-typography">
-	<form [formGroup]="createForm" class="form container">
+	<form [formGroup]="editForm" class="form container">
 		<mat-form-field class="form-element">
 			<mat-label>Name</mat-label>
 			<input
@@ -114,7 +114,7 @@
 		mat-button
 		[mat-dialog-close]="true"
 		(click)="submitForm()"
-		[disabled]="!createForm.valid"
+		[disabled]="!editForm.valid"
 	>
 		Confirm
 	</button>

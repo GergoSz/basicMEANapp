@@ -10,7 +10,7 @@ interface IOptions {
 }
 
 export interface DialogData {
-	rentable: any;
+	myobj: any;
 	id: number;
 }
 
@@ -41,7 +41,7 @@ export class EditRentableComponent implements OnInit {
 		private apiService: ApiService,
 		@Inject(MAT_DIALOG_DATA) public data: DialogData
 	) {
-		this.setForm(this.data.rentable._id);
+		this.setForm(this.data.myobj._id);
 		this.mainForm();
 	}
 
@@ -80,7 +80,7 @@ export class EditRentableComponent implements OnInit {
 			return false;
 		} else {
 			this.apiService
-				.updateRentable(this.data.rentable._id, this.editForm.value)
+				.updateRentable(this.data.myobj._id, this.editForm.value)
 				.subscribe(
 					(res) => {
 						console.log("Content updated successfully!");

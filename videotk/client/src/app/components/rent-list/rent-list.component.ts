@@ -30,10 +30,11 @@ export class RentListComponent implements OnInit {
 		});
 
 		this.Rentables.forEach((rentable) => {
-			if (rentable.status == "AVAILABLE") {
+			if (rentable.state == "AVAILABLE") {
 				this.availableCount++;
 			}
 		});
+		console.log(this.Rentables);
 	}
 
 	readRents() {
@@ -43,6 +44,7 @@ export class RentListComponent implements OnInit {
 	}
 
 	createRent() {
+		this.readAvailables();
 		if (this.availableCount > 0) {
 			const dialogRef = this.dialog.open(RentCreateComponent);
 
@@ -55,7 +57,11 @@ export class RentListComponent implements OnInit {
 			const config = new MatSnackBarConfig();
 			config.duration = 1000;
 			config.panelClass = ["warn-snackbar"];
-			this.snackBar.open("There is nothing to rent!", "", config);
+			this.snackBar.open(
+				"There is nothing to rent!",
+				this.availableCount.toString(),
+				config
+			);
 		}
 	}
 }

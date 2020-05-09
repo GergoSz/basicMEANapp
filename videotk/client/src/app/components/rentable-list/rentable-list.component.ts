@@ -42,7 +42,7 @@ export class RentableListComponent implements OnInit {
 
 	editRentable(rentable, index) {
 		const dialogRef = this.dialog.open(EditRentableComponent, {
-			data: { rentable: rentable, index: index },
+			data: { myobj: rentable, index: index },
 		});
 
 		dialogRef.afterClosed().subscribe((result) => {
