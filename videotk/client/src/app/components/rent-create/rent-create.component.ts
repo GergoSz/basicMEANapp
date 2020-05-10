@@ -12,6 +12,12 @@ export class RentCreateComponent implements OnInit {
 	createForm: FormGroup;
 	Rentables: any = [];
 	addedRentables: any = [];
+	Clients: any = [];
+	selected: any;
+
+	//! tmp
+	firstFormGroup: FormGroup;
+	secondFormGroup: FormGroup;
 
 	matcher = new FormErrorMatcherService();
 
@@ -21,18 +27,38 @@ export class RentCreateComponent implements OnInit {
 	) {
 		this.mainForm();
 		this.readRentables();
+		this.readClients();
 	}
 
 	get myForm() {
 		return this.createForm.controls;
 	}
 
-	ngOnInit(): void {}
+	get firstGroup() {
+		return this.firstFormGroup.controls;
+	}
+
+	//! tmp oninit
+	ngOnInit(): void {
+		this.firstFormGroup = this.formBuilder.group({
+			rentingclient: ["", Validators.required],
+		});
+		this.secondFormGroup = this.formBuilder.group({
+			secondCtrl: ["", Validators.required],
+		});
+	}
 
 	readRentables() {
 		this.apiService.getRentables().subscribe((data) => {
 			this.Rentables = data;
 		});
+	}
+
+	readClients() {
+		this.apiService.getClients().subscribe((data) => {
+			this.Clients = data;
+		});
+		console.log(this.Clients);
 	}
 
 	mainForm() {
@@ -56,12 +82,11 @@ export class RentCreateComponent implements OnInit {
 	}
 
 	submitForm() {
-		if (!this.createForm.valid) {
+		if (!this.createForm.valid && this.addedRentables.length <= 0) {
 			return false;
 		} else {
 			this.apiService.createRent(this.createForm.value).subscribe(
-				() => {
-					//TODO: Update status of rented rentables
+				(res) => {
 					this.addedRentables.forEach((rentable) => {
 						rentable.state = "RENTED";
 						console.log(
@@ -79,6 +104,13 @@ export class RentCreateComponent implements OnInit {
 								}
 							);
 					});
+
+					this.selected.Rents.push(res);
+					this.apiService
+						.updateClient(this.selected._id, this.selected)
+						.subscribe(() => {
+							console.log("Client updated!");
+						});
 					console.log("Rent successfully created!!");
 				},
 				(error) => {

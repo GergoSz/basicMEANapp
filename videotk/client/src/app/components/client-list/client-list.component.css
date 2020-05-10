@@ -1,15 +1,67 @@
-.button-container{
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    z-index: 999 !important;
+.button-container {
+	position: fixed;
+	right: 30px;
+	bottom: 30px;
+	z-index: 999 !important;
 }
 
-.client-table{
-    width: auto;
-    margin: 60px auto;
-    display: table;
-    border-collapse: separate;
-    border-spacing: 2px;
-    border-color: gray;
+.client-table {
+	width: auto;
+	margin: 60px auto;
+	display: table;
+	border-collapse: separate;
+	border-spacing: 2px;
+	border-color: gray;
+}
+
+.center {
+	max-width: 50%;
+	margin: 70px auto;
+}
+
+.mat-form-field + .mat-form-field {
+	margin-left: 8px;
+}
+
+.accordion-spacing {
+	margin: 1em;
+}
+
+.extension-panel {
+	padding: 0px;
+	margin: 0em;
+	text-align: center;
+	justify-content: center;
+	color: red !important;
+}
+
+.extension-panel button {
+	min-width: 30px !important;
+	padding-right: 16px;
+}
+
+.extension-panel-header {
+	padding-right: 0px;
+	text-align: center;
+	justify-content: center;
+}
+
+.extension-panel-header mat-panel-title {
+    padding-top: 10px;
+    width: 30%;
+}
+
+.extension-panel-header mat-panel-description {
+	padding-top: 10px;
+}
+
+.extension-panel-header-shown mat-panel-title {
+    width: 30%;
+}
+
+@media only screen and (max-width: 600px) {
+	.center{
+        max-width: 100%;
+        margin: 0em 6px;
+    }
 }

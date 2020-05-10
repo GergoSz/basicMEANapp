@@ -3,54 +3,59 @@
 	<mat-spinner></mat-spinner>
 </p>
 
-<table class="client-table">
-	<tr *ngFor="let client of Clients; let i = index">
-		<div *ngIf="client.isDeleted == false; else fadedOut">
-			<td>{{ client.name }}</td>
-			<td>
-				{{ client.address.city }} {{ client.address.street }}
-				{{ client.address.house }}
-			</td>
-			<td>
-				{{ client.phoneNum }}
-			</td>
-			<td>
-				{{ client.IDnum }}
-			</td>
-			<td>
-				<button mat-button (click)="editClient(client)">
-					<mat-icon>edit</mat-icon>
-				</button>
-			</td>
-			<td>
-				<button mat-button (click)="toggleClient(client)">
-					<mat-icon>delete</mat-icon>
-				</button>
-			</td>
-		</div>
-
-		<ng-template #fadedOut>
-			<div class="fadedOut">
-				<td>{{ client.name }}</td>
-				<td>
+<div class="center">
+	<mat-accordion
+		*ngFor="let client of Clients; let i = index"
+		class="accordion-spacing"
+	>
+		<mat-expansion-panel
+			*ngIf="client.isDeleted == false; else fadedOut"
+			class="extension-panel-shown"
+		>
+			<mat-expansion-panel-header class="extension-panel-header-shown">
+				<mat-panel-title>
+					{{ client.name }}
+				</mat-panel-title>
+				<mat-panel-description>
 					{{ client.address.city }} {{ client.address.street }}
 					{{ client.address.house }}
-				</td>
-				<td>
-					{{ client.phoneNum }}
-				</td>
-				<td>
-					{{ client.IDnum }}
-				</td>
-				<td>
+				</mat-panel-description>
+			</mat-expansion-panel-header>
+			<p>
+				Phone: {{ client.phoneNum }} <br />
+				ID: {{ client.IDnum }}
+			</p>
+			<div *ngIf="client.Rents.length > 0">Rented:</div>
+			<div *ngFor="let rent of client.Rents">
+				<div *ngFor="let rented of rent.Rented">
+					- {{ rented.title }}
+				</div>
+			</div>
+			<button mat-button (click)="editClient(client)">
+				<mat-icon>edit</mat-icon>
+			</button>
+			<button mat-button (click)="toggleClient(client)">
+				<mat-icon>delete</mat-icon>
+			</button>
+		</mat-expansion-panel>
+		<ng-template #fadedOut class="fadedOut">
+			<mat-expansion-panel disabled class="extension-panel">
+				<mat-expansion-panel-header class="extension-panel-header">
+					<mat-panel-title>
+						{{ client.name }}
+					</mat-panel-title>
+					<mat-panel-description>
+						{{ client.address.city }} {{ client.address.street }}
+						{{ client.address.house }}
+					</mat-panel-description>
 					<button mat-button (click)="toggleClient(client)">
 						<mat-icon>add</mat-icon>
 					</button>
-				</td>
-			</div>
+				</mat-expansion-panel-header>
+			</mat-expansion-panel>
 		</ng-template>
-	</tr>
-</table>
+	</mat-accordion>
+</div>
 
 <div class="button-container">
 	<button mat-fab color="primary" (click)="createClient()">

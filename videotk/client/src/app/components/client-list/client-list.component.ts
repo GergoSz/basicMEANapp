@@ -11,6 +11,7 @@ import { ClientEditComponent } from "../client-edit/client-edit.component";
 })
 export class ClientListComponent implements OnInit {
 	Clients: any = [];
+	panelOpenState = false;
 	constructor(private apiService: ApiService, public dialog: MatDialog) {}
 
 	ngOnInit(): void {
